@@ -26,7 +26,7 @@ export class ScoreBoard {
       throw new Error('cannot update a game while no game is in progress');
     }
 
-    if (homeTeamScore < 0) {
+    if (homeTeamScore < 0 || awayTeamScore < 0) {
       throw new Error('score cannot be a negative number');
     }
 
