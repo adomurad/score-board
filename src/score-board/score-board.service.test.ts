@@ -123,4 +123,17 @@ describe('score-board.service.ts tests', () => {
 
   });
 
+  describe('summary', () => {
+
+    test('initial summary should be empty', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      const result = scoreBoard.getSummary();
+
+      expect(result).toHaveLength(0);
+    });
+
+  });
+
 });

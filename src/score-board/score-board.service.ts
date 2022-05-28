@@ -36,6 +36,10 @@ export class ScoreBoard {
     this.store.setCurrentGame(currentGame);
   } 
 
+  public getSummary(): GameEntry[] {
+    return [];
+  }
+
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {
     return {
       homeTeam: {
