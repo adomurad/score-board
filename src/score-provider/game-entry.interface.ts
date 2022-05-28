@@ -1,5 +1,6 @@
 export interface TeamScore {
   teamName: string;
+  score: number;
 }
 
 export interface GameEntry {
