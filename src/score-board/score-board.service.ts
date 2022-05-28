@@ -20,6 +20,10 @@ export class ScoreBoard {
     return currentGame;
   }
 
+  public updateScore(homeTeamScore: number, awayTeamScore: number): void {
+
+  } 
+
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {
     return {
       homeTeam: {

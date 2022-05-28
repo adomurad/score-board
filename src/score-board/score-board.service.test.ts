@@ -61,4 +61,17 @@ describe('score-board.service.ts tests', () => {
 
   });
 
+  describe('when updating score', () => {
+
+    test('should throw when no game is in progress', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      expect(() => {
+        scoreBoard.updateScore(5, 2);
+      }).toThrowError('cannot update a game while no game is in progress');
+    });
+
+  });
+
 });
