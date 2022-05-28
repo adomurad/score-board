@@ -21,7 +21,10 @@ export class ScoreBoard {
   }
 
   public updateScore(homeTeamScore: number, awayTeamScore: number): void {
-
+    const currentGame = this.store.getCurrentGame();
+    if (!currentGame) {
+      throw new Error('cannot update a game while no game is in progress');
+    }
   } 
 
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {
