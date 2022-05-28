@@ -12,11 +12,11 @@ So I had to get rid of the possibility that someone using the store could rely o
 
 The `deepCopy` function is extremely poorly performing - but this is just an exercise an normally this function would not be necessary, or at least used from an existing package.
 
-## remarks
+## Remarks
 
-I was wondering if I should check if the score decreases in the `ScoreBoard` service when updating.
-Football game rules don't allow normally to decrease a score.
-But single responsibility principle states that `ScoreBoard` should only have one responsibility - and right now it is "tracking scores".
+I was wondering if I should check if the score decreases in the `ScoreBoard` service when updating the score.  
+Football game rules don't allow normally to decrease a score.  
+But single responsibility principle states that `ScoreBoard` should only have one responsibility - and right now it is "tracking scores".  
 It doesn't have to know the game rules - this way it is more reusable (e.g. for other games).
 
 And I can think of some use-cases when someone would want to decrease the score - e.g. a mistake, or a goal gets invalidated by the referee.
