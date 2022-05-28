@@ -37,11 +37,15 @@ export class ScoreBoard {
   }
 
   public finishGame(): void {
+    const currentGame = this.store.getCurrentGame();
 
+    if (currentGame) {
+      this.store.add(currentGame);
+    }
   }
 
   public getSummary(): GameEntry[] {
-    return [];
+    return this.store.getAll();
   }
 
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {

@@ -5,9 +5,11 @@ import { IScoreProvider } from './score-provider.interface';
 export class MemoryScoreProvider implements IScoreProvider {
 
   private _currentGame: GameEntry | null;
+  private _gameList: GameEntry[];
 
   constructor() {
     this._currentGame = null;
+    this._gameList = [];
   }
 
   public setCurrentGame(game: GameEntry): void {
@@ -16,5 +18,13 @@ export class MemoryScoreProvider implements IScoreProvider {
 
   public getCurrentGame(): GameEntry | null {
     return deepCopy(this._currentGame);
+  }
+
+  public add(game: GameEntry): void {
+    this._gameList = [...this._gameList, deepCopy(game)];
+  }
+
+  public getAll(): GameEntry[] {
+    return deepCopy(this._gameList);
   }
 }

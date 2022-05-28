@@ -14,4 +14,16 @@ export interface IScoreProvider {
    */
   getCurrentGame(): GameEntry | null;
 
+
+  /**
+   * Add a finished game to store
+   * @param game the game to add
+   */
+  add(game: GameEntry): void;
+
+  /**
+   * Get all game entries from the store
+   * @returns game entries
+   */
+  getAll(): GameEntry[];
 }
