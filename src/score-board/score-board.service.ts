@@ -1,5 +1,6 @@
 import { GameEntry } from '../score-provider/game-entry.interface';
 import { IScoreProvider } from '../score-provider/score-provider.interface';
+import { compareGames } from './compare-games';
 
 export class ScoreBoard {
 
@@ -47,7 +48,11 @@ export class ScoreBoard {
   }
 
   public getSummary(): GameEntry[] {
-    return this.store.getAll();
+    const gameList = this.store.getAll();
+
+    // new array just to be safe - sort mutates the array
+    const sortedGameList = [...gameList].sort(compareGames);
+    return sortedGameList;
   }
 
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {
