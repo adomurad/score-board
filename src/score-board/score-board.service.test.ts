@@ -141,6 +141,17 @@ describe('score-board.service.ts tests', () => {
       expect(result[0].awayTeam.teamName).toBe('team2');
     });
 
+    test('should remove the current game', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+      scoreBoard.finishGame();
+      const result = scoreBoard.getCurrentGame();
+
+      expect(result).toBeNull();
+    });
+
   });
 
 
