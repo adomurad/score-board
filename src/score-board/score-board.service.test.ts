@@ -12,6 +12,7 @@ describe('score-board.service.ts tests', () => {
     expect(result).toBeNull();
   });
 
+
   describe('when starting a game', () => {
 
     test('should be able to get current game', () => {
@@ -60,6 +61,7 @@ describe('score-board.service.ts tests', () => {
     });
 
   });
+
 
   describe('when updating score', () => {
 
@@ -122,6 +124,25 @@ describe('score-board.service.ts tests', () => {
     });
 
   });
+
+
+  describe('when finishing a game', () => {
+
+    test('should add the game to summary', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+      scoreBoard.finishGame();
+      const result = scoreBoard.getSummary();
+
+      expect(result).toHaveLength(1);
+      expect(result[0].homeTeam.teamName).toBe('team1');
+      expect(result[0].awayTeam.teamName).toBe('team2');
+    });
+
+  });
+
 
   describe('summary', () => {
 

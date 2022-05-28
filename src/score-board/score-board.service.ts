@@ -34,7 +34,11 @@ export class ScoreBoard {
     currentGame.awayTeam.score = awayTeamScore;
 
     this.store.setCurrentGame(currentGame);
-  } 
+  }
+
+  public finishGame(): void {
+
+  }
 
   public getSummary(): GameEntry[] {
     return [];
