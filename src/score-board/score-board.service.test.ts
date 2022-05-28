@@ -87,6 +87,17 @@ describe('score-board.service.ts tests', () => {
       expect(result?.awayTeam.score).toBe(newAwayTeamScore);
     });
 
+    test('should throw when homeTeam score is lower than 0', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+
+      expect(() => {
+        scoreBoard.updateScore(-1, 0);
+      }).toThrowError('score cannot be a negative number');
+    });
+
   });
 
 });
