@@ -1,0 +1,32 @@
+{
+  "name": "score-board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adomurad/score-board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adomurad/score-board/issues"
+  },
+  "homepage": "https://github.com/adomurad/score-board#readme",
+  "dependencies": {
+    "typescript": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}
