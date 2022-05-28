@@ -26,6 +26,10 @@ export class ScoreBoard {
       throw new Error('cannot update a game while no game is in progress');
     }
 
+    if (homeTeamScore < 0) {
+      throw new Error('score cannot be a negative number');
+    }
+
     currentGame.homeTeam.score = homeTeamScore;
     currentGame.awayTeam.score = awayTeamScore;
 
