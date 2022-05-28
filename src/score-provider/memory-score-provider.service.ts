@@ -20,6 +20,10 @@ export class MemoryScoreProvider implements IScoreProvider {
     return deepCopy(this._currentGame);
   }
 
+  public removeCurrentGame(): void {
+    this._currentGame = null;
+  }
+
   public add(game: GameEntry): void {
     this._gameList = [...this._gameList, deepCopy(game)];
   }

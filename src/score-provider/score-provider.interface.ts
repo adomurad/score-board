@@ -14,6 +14,10 @@ export interface IScoreProvider {
    */
   getCurrentGame(): GameEntry | null;
 
+  /**
+   * Removes the current game from the store
+   */
+  removeCurrentGame(): void;
 
   /**
    * Add a finished game to store

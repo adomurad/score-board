@@ -40,6 +40,7 @@ export class ScoreBoard {
     const currentGame = this.store.getCurrentGame();
 
     if (currentGame) {
+      this.store.removeCurrentGame();
       this.store.add(currentGame);
     }
   }
