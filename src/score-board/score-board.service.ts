@@ -6,6 +6,11 @@ export class ScoreBoard {
   constructor(private store: IScoreProvider) { }
 
   public startGame(homeTeamName: string, awayTeamName: string): void {
+    const currentGame = this.store.getCurrentGame();
+    if (currentGame) {
+      throw new Error('cannot start a game while another game is in progress');
+    }
+
     const newGame = this.createNewGameEntry(homeTeamName, awayTeamName);
     this.store.setCurrentGame(newGame);
   }
