@@ -37,6 +37,23 @@ describe('score-board.service.ts tests', () => {
       }).toThrowError('cannot start a game while another game is in progress');
     });
 
+    test('the game should record current start date', () => {
+      const mockTimestamp = new Date('2022-05-28T18:30:50.000Z').getTime();
+      const spy = jest
+        .spyOn(global.Date, 'now')
+        .mockImplementation(() => mockTimestamp);
+
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+      const result = scoreBoard.getCurrentGame();
+
+      spy.mockRestore();
+
+      expect(result?.startDateTimestamp).toBe(mockTimestamp);
+    });
+
     test('team names should be stored and returned', () => {
       const memoryStore = new MemoryScoreProvider();
       const scoreBoard = new ScoreBoard(memoryStore);
@@ -180,6 +197,7 @@ describe('score-board.service.ts tests', () => {
       const memoryStore = new MemoryScoreProvider();
 
       const game1: GameEntry = {
+        startDateTimestamp: 1,
         homeTeam: {
           teamName: 'game1-team1',
           score: 7,
@@ -191,6 +209,7 @@ describe('score-board.service.ts tests', () => {
       }
 
       const game2: GameEntry = {
+        startDateTimestamp: 2,
         homeTeam: {
           teamName: 'game2-team1',
           score: 6,
@@ -202,6 +221,7 @@ describe('score-board.service.ts tests', () => {
       }
 
       const game3: GameEntry = {
+        startDateTimestamp: 3,
         homeTeam: {
           teamName: 'game3-team1',
           score: 4,

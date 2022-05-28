@@ -57,6 +57,7 @@ export class ScoreBoard {
 
   private createNewGameEntry(homeTeamName: string, awayTeamName: string): GameEntry {
     return {
+      startDateTimestamp: Date.now(),
       homeTeam: {
         teamName: homeTeamName,
         score: 0,

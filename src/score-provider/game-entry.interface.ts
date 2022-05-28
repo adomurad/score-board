@@ -4,6 +4,7 @@ export interface TeamScore {
 }
 
 export interface GameEntry {
+  startDateTimestamp: number;
   homeTeam: TeamScore;
   awayTeam: TeamScore;
 }

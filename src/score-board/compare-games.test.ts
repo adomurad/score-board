@@ -1,8 +1,9 @@
 import { GameEntry } from '../score-provider/game-entry.interface';
 import { compareGames } from './compare-games';
 
-function getMockedGame(score1: number, score2: number): GameEntry {
+function getMockedGame(score1: number, score2: number, date = Date.now()): GameEntry {
   return {
+    startDateTimestamp: date,
     homeTeam: {
       teamName: '1',
       score: score1,
