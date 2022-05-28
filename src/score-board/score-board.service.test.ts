@@ -152,6 +152,15 @@ describe('score-board.service.ts tests', () => {
       expect(result).toBeNull();
     });
 
+    test('should throw when no game in progress', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      expect(() => {
+        scoreBoard.finishGame();
+      }).toThrowError('cannot finish a game while no game is in progress');
+    });
+
   });
 
 
