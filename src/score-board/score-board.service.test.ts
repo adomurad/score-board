@@ -87,6 +87,18 @@ describe('score-board.service.ts tests', () => {
       expect(result?.awayTeam.score).toBe(newAwayTeamScore);
     });
 
+    test('should be able to set scores to 0', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+      scoreBoard.updateScore(0, 0);
+      const result = scoreBoard.getCurrentGame();
+
+      expect(result?.homeTeam.score).toBe(0);
+      expect(result?.awayTeam.score).toBe(0);
+    });
+
     test('should throw when homeTeam score is lower than 0', () => {
       const memoryStore = new MemoryScoreProvider();
       const scoreBoard = new ScoreBoard(memoryStore);
