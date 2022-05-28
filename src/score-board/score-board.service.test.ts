@@ -24,6 +24,17 @@ describe('score-board.service.ts tests', () => {
       expect(result).not.toBeNull();
     });
 
+    test('should throw when a game is in progress', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+
+      expect(() => {
+        scoreBoard.startGame('team1', 'team2');
+      }).toThrowError('cannot start a game while another game is in progress');
+    });
+
     test('team names should be stored and returned', () => {
       const memoryStore = new MemoryScoreProvider();
       const scoreBoard = new ScoreBoard(memoryStore);
