@@ -50,7 +50,7 @@ export class ScoreBoard {
   public getSummary(): GameEntry[] {
     const gameList = this.store.getAll();
 
-    // new array just to be safe - sort mutates the array
+    // new array just to be safe - sort mutates the array in place
     const sortedGameList = [...gameList].sort(compareGames);
     return sortedGameList;
   }
