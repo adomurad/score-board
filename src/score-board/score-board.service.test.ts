@@ -98,6 +98,17 @@ describe('score-board.service.ts tests', () => {
       }).toThrowError('score cannot be a negative number');
     });
 
+    test('should throw when awayTeam score is lower than 0', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      scoreBoard.startGame('team1', 'team2');
+
+      expect(() => {
+        scoreBoard.updateScore(0, -1);
+      }).toThrowError('score cannot be a negative number');
+    });
+
   });
 
 });
