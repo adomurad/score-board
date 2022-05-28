@@ -38,11 +38,12 @@ export class ScoreBoard {
 
   public finishGame(): void {
     const currentGame = this.store.getCurrentGame();
-
-    if (currentGame) {
-      this.store.removeCurrentGame();
-      this.store.add(currentGame);
+    if (!currentGame) {
+      throw new Error('cannot finish a game while no game is in progress');
     }
+
+    this.store.removeCurrentGame();
+    this.store.add(currentGame);
   }
 
   public getSummary(): GameEntry[] {
