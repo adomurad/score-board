@@ -1,3 +1,4 @@
+import { deepCopy } from '../utils/deepCopy';
 import { GameEntry } from './game-entry.interface';
 import { IScoreProvider } from './score-provider.interface';
 
@@ -10,10 +11,10 @@ export class MemoryScoreProvider implements IScoreProvider {
   }
 
   public setCurrentGame(game: GameEntry): void {
-    this._currentGame = game;
+    this._currentGame = deepCopy(game);
   }
 
   public getCurrentGame(): GameEntry | null {
-    return this._currentGame;
+    return deepCopy(this._currentGame);
   }
 }
