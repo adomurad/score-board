@@ -1,3 +1,4 @@
+import { GameEntry } from '../score-provider/game-entry.interface';
 import { IScoreProvider } from '../score-provider/score-provider.interface';
 
 export class ScoreBoard {
@@ -9,8 +10,9 @@ export class ScoreBoard {
     this.store.setCurrentGame(newGame);
   }
 
-  public getCurrentGame(): null {
-    return null;
+  public getCurrentGame(): GameEntry | null {
+    const currentGame = this.store.getCurrentGame();
+    return currentGame;
   }
 
 }
