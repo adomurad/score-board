@@ -17,13 +17,32 @@ function getMockedGame(score1: number, score2: number, date = Date.now()): GameE
 
 describe('compare-games.test.ts tests', () => {
 
-  test('should return the difference in score sums', () => {
-    const game1 = getMockedGame(6, 7);
-    const game2 = getMockedGame(10, 0);
+  describe('when score sums are not equal', () => {
 
-    const result = compareGames(game1, game2);
+    test('should return the difference in score sums', () => {
+      const game1 = getMockedGame(6, 7);
+      const game2 = getMockedGame(10, 0);
 
-    expect(result).toBe(-3);
+      const result = compareGames(game1, game2);
+
+      expect(result).toBe(-3);
+    });
+  });
+
+
+  describe('when score sums are equal', () => {
+
+    test('should return the difference in startDateTimestamp', () => {
+      const date1 = 1000000000000;
+      const date2 = 1000000000100;
+
+      const game1 = getMockedGame(5, 5, date1);
+      const game2 = getMockedGame(10, 0, date2);
+
+      const result = compareGames(game1, game2);
+
+      expect(result).toBe(100);
+    });
   });
 
 });
