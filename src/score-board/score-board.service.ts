@@ -19,9 +19,11 @@ export class ScoreBoard {
     return {
       homeTeam: {
         teamName: homeTeamName,
+        score: 0,
       },
       awayTeam: {
         teamName: awayTeamName,
+        score: 0,
       }
     };
   }
