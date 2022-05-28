@@ -1,3 +1,4 @@
+import { GameEntry } from '../score-provider/game-entry.interface';
 import { MemoryScoreProvider } from '../score-provider/memory-score-provider.service';
 import { ScoreBoard } from './score-board.service';
 
@@ -173,6 +174,56 @@ describe('score-board.service.ts tests', () => {
       const result = scoreBoard.getSummary();
 
       expect(result).toHaveLength(0);
+    });
+
+    test('should be sorted by score sum', () => {
+      const memoryStore = new MemoryScoreProvider();
+
+      const game1: GameEntry = {
+        homeTeam: {
+          teamName: 'game1-team1',
+          score: 7,
+        },
+        awayTeam: {
+          teamName: 'game1-team2',
+          score: 0,
+        },
+      }
+
+      const game2: GameEntry = {
+        homeTeam: {
+          teamName: 'game2-team1',
+          score: 6,
+        },
+        awayTeam: {
+          teamName: 'game2-team2',
+          score: 5,
+        },
+      }
+
+      const game3: GameEntry = {
+        homeTeam: {
+          teamName: 'game3-team1',
+          score: 4,
+        },
+        awayTeam: {
+          teamName: 'game3-team2',
+          score: 4,
+        },
+      }
+
+      memoryStore.add(game1);
+      memoryStore.add(game2);
+      memoryStore.add(game3);
+
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      const result = scoreBoard.getSummary();
+
+      expect(result).toHaveLength(3);
+      expect(result[0]).toEqual(game2);
+      expect(result[1]).toEqual(game3);
+      expect(result[2]).toEqual(game1);
     });
 
   });
