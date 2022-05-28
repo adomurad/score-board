@@ -248,4 +248,57 @@ describe('score-board.service.ts tests', () => {
 
   });
 
+  test('should be sorted by date when score sum are equal', () => {
+    const memoryStore = new MemoryScoreProvider();
+
+    const game1: GameEntry = {
+      startDateTimestamp: 1,
+      homeTeam: {
+        teamName: 'game1-team1',
+        score: 1,
+      },
+      awayTeam: {
+        teamName: 'game1-team2',
+        score: 4,
+      },
+    }
+
+    const game2: GameEntry = {
+      startDateTimestamp: 2,
+      homeTeam: {
+        teamName: 'game2-team1',
+        score: 3,
+      },
+      awayTeam: {
+        teamName: 'game2-team2',
+        score: 2,
+      },
+    }
+
+    const game3: GameEntry = {
+      startDateTimestamp: 3,
+      homeTeam: {
+        teamName: 'game3-team1',
+        score: 10,
+      },
+      awayTeam: {
+        teamName: 'game3-team2',
+        score: 10,
+      },
+    }
+
+    memoryStore.add(game1);
+    memoryStore.add(game2);
+    memoryStore.add(game3);
+
+    const scoreBoard = new ScoreBoard(memoryStore);
+
+    const result = scoreBoard.getSummary();
+
+    expect(result).toHaveLength(3);
+    expect(result[0]).toEqual(game3);
+    expect(result[1]).toEqual(game2);
+    expect(result[2]).toEqual(game1);
+  });
+
 });
