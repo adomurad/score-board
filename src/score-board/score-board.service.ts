@@ -5,7 +5,7 @@ export class ScoreBoard {
 
   constructor(private store: IScoreProvider) { }
 
-  public startGame(): void {
+  public startGame(homeTeamName: string, awayTeamName: string): void {
     const newGame = {};
     this.store.setCurrentGame(newGame);
   }

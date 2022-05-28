@@ -1,3 +1,8 @@
+export interface TeamScore {
+  teamName: string;
+}
+
 export interface GameEntry {
-  // TODO
+  homeTeam: TeamScore;
+  awayTeam: TeamScore;
 }
