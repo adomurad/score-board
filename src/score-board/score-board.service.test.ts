@@ -72,6 +72,21 @@ describe('score-board.service.ts tests', () => {
       }).toThrowError('cannot update a game while no game is in progress');
     });
 
+    test('should update both scores', () => {
+      const memoryStore = new MemoryScoreProvider();
+      const scoreBoard = new ScoreBoard(memoryStore);
+
+      const newHomeTeamScore = 10;
+      const newAwayTeamScore = 20;
+
+      scoreBoard.startGame('team1', 'team2');
+      scoreBoard.updateScore(newHomeTeamScore, newAwayTeamScore);
+      const result = scoreBoard.getCurrentGame();
+
+      expect(result?.homeTeam.score).toBe(newHomeTeamScore);
+      expect(result?.awayTeam.score).toBe(newAwayTeamScore);
+    });
+
   });
 
 });
